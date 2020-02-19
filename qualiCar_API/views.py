@@ -1,8 +1,12 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework import viewsets
+from rest_framework.authentication import TokenAuthentication
 
 from qualiCar_API import serializers
+from qualiCar_API import models
+from qualiCar_API import permissions
 
 
 class qualiCarApiView (APIView):
@@ -36,3 +40,13 @@ class qualiCarApiView (APIView):
                 serializer.errors,
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+
+class UserProfileViewSet (viewsets.ModelViewSet):
+    """ Handle creating and updating profiles """
+    serializer_class = serializers.UserProfileSerializer
+
+    queryset = models.UserProfile.objects.all()
+
+    autentication_classes = (TokenAuthentication, )
+    permission_classes = (permissions.UpdateOwnProfile, )
