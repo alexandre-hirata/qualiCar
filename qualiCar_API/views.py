@@ -4,6 +4,8 @@ from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.authentication import TokenAuthentication
 from rest_framework import filters
+from rest_framework.authtoken.views import ObtainAuthToken
+from rest_framework.settings import api_settings
 
 from qualiCar_API import serializers
 from qualiCar_API import models
@@ -55,3 +57,26 @@ class UserProfileViewSet (viewsets.ModelViewSet):
     # Search field
     filter_backends = (filters.SearchFilter, )
     search_fields = ('name', 'email', )
+
+
+# Authentication
+class UserLoginApiView (ObtainAuthToken):
+    """ Handle creating user authentication tokens """
+
+    renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
+
+
+class DateViewSet (viewsets.ModelViewSet):
+    """ Handle creating and update dates """
+
+    # Enable authentication
+    authentication_classes = (TokenAuthentication, )
+
+    serializer_class = serializers.DateSerializer
+
+    queryset = models.Date.objects.all ()
+
+    def perform_create (self, serializer):
+        """ Sets the user profile to the logget in user """
+
+        serializer.save (author = self.request.user)

@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
+from django.conf import settings
 
 
 class UserProfileManager (BaseUserManager):
@@ -61,3 +62,33 @@ class UserProfile (AbstractBaseUser, PermissionsMixin):
     def __str__ (self):
         """ Return string representation of user """
         return self.email
+
+
+class Date (models.Model):
+    """ Datetime of maintanance """
+
+    # Make a reference from settings file to the profile user (author)
+    author = models.ForeignKey (
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        null=True
+    )
+
+    create_on = models.DateTimeField (auto_now_add=True)
+    last_change_on = models.DateTimeField (auto_now_add=True)
+    startDate = models.DateTimeField (null=False)
+    endDate = models.DateTimeField (null=False)
+
+    description = models.CharField (max_length=50)
+
+    def get_start_date (self):
+        """ Retrieve start date """
+        return self.startDate
+
+    def get_end_date (self):
+        """ Retrieve end date """
+        return self.endDate
+
+    def __str__ (self):
+        """ Return string representation of date """
+        return self.description

@@ -1,3 +1,4 @@
 from django.contrib import admin
+from qualiCar_API import models
 
-# Register your models here.
+admin.site.register (models.Date)

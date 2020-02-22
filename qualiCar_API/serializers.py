@@ -38,3 +38,17 @@ class UserProfileSerializer (serializers.ModelSerializer):
         )
 
         return user
+
+
+class DateSerializer (serializers.ModelSerializer):
+    """ Serializes Date items """
+
+    class Meta:
+        model = models.Date
+        fields = ('id', 'startDate', 'endDate', 'create_on', 'description', 'author')
+
+        # To make author and create_on READ ONLY
+        extra_kwargs = {
+            #'author': { 'read-only': True }
+            #'create_on': { 'read-only': True }
+        }
