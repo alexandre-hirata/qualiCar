@@ -52,3 +52,17 @@ class DateSerializer (serializers.ModelSerializer):
             #'author': { 'read-only': True }
             #'create_on': { 'read-only': True }
         }
+
+
+class PartSerializer (serializers.ModelSerializer):
+    """ Serializes Part items """
+
+    class Meta:
+        model = models.Part
+        fields = ('id', 'name', 'description', 'create_on', 'author')
+
+        # To make author and create_on READ ONLY
+        extra_kwargs = {
+            #'author': { 'read-only': True }
+            #'create_on': { 'read-only': True }
+        }

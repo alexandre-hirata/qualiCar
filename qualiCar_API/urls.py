@@ -10,6 +10,7 @@ router = DefaultRouter ()
 # Base-name is required if there is no queryset or overwriting the name of the queryset
 router.register ('profile', views.UserProfileViewSet)
 router.register ('date', views.DateViewSet)
+router.register ('part', views.PartViewSet)
 
 urlpatterns = [
     path ('hello-view/', views.qualiCarApiView.as_view()),

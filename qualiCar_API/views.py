@@ -80,3 +80,19 @@ class DateViewSet (viewsets.ModelViewSet):
         """ Sets the user profile to the logget in user """
 
         serializer.save (author = self.request.user)
+
+
+class PartViewSet (viewsets.ModelViewSet):
+    """ Handle creating and update dates """
+
+    # Enable authentication
+    authentication_classes = (TokenAuthentication, )
+
+    serializer_class = serializers.PartSerializer
+
+    queryset = models.Part.objects.all ()
+
+    def perform_create (self, serializer):
+        """ Sets the user profile to the logget in user """
+
+        serializer.save (author = self.request.user)

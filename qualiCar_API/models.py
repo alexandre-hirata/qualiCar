@@ -92,3 +92,32 @@ class Date (models.Model):
     def __str__ (self):
         """ Return string representation of date """
         return self.description
+
+
+class Part (models.Model):
+    """ Parts of vehicles """
+    # Make a reference from settings file to the profile user (author)
+    author = models.ForeignKey (
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        null=True
+    )
+
+    create_on = models.DateTimeField (auto_now_add=True)
+    last_change_on = models.DateTimeField (auto_now_add=True)
+
+    name = models.CharField (max_length=50)
+    description = models.CharField (max_length=150)
+
+    def __str__ (self):
+        """ Return string representation of part """
+        return self.name
+
+    def get_description (self):
+        """ Return description part """
+        return self.description
+
+    def get_name (self):
+        """ Return name part """
+        return self.name
+        
