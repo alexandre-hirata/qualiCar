@@ -120,4 +120,34 @@ class Part (models.Model):
     def get_name (self):
         """ Return name part """
         return self.name
-        
+
+
+class Vehicle (models.Model):
+    """ Vehicles model """
+    # Make a reference from settings file to the profile user (author)
+    author = models.ForeignKey (
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        null=True
+    )
+
+    create_on = models.DateTimeField (auto_now_add=True)
+    last_change_on = models.DateTimeField (auto_now_add=True)
+
+    brand = models.CharField (max_length=50)
+    model = models.CharField (max_length=50)
+
+    # Parts that has in vehicle
+    parts = models.ManyToManyField(Part)
+
+    def __str__ (self):
+        """ Return string representation of vehicle """
+        return self.brand + self.model
+
+    def get_brand (self):
+        """ Return brand vehicle """
+        return self.brand
+
+    def get_model (self):
+        """ Return model vehicle """
+        return self.model

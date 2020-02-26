@@ -96,3 +96,19 @@ class PartViewSet (viewsets.ModelViewSet):
         """ Sets the user profile to the logget in user """
 
         serializer.save (author = self.request.user)
+
+
+class VehicleViewSet (viewsets.ModelViewSet):
+    """ Handle creating and update vehicles """
+
+    # Enable authentication
+    authentication_classes = (TokenAuthentication, )
+
+    serializer_class = serializers.VehicleSerializer
+
+    queryset = models.Vehicle.objects.all ()
+
+    def perform_create (self, serializer):
+        """ Sets the user profile to the logget in user """
+
+        serializer.save (author = self.request.user)

@@ -66,3 +66,20 @@ class PartSerializer (serializers.ModelSerializer):
             #'author': { 'read-only': True }
             #'create_on': { 'read-only': True }
         }
+
+
+class VehicleSerializer (serializers.ModelSerializer):
+    """ Serializes Vehicle items """
+
+    parts = PartSerializer(read_only=True, many=True)
+
+    class Meta:
+        model = models.Vehicle
+        #fields = ('id', 'brand', 'model', 'create_on', 'author', 'parts')
+        fields = '__all__'
+
+        # To make author and create_on READ ONLY
+        extra_kwargs = {
+            #'author': { 'read-only': True }
+            #'create_on': { 'read-only': True }
+        }
