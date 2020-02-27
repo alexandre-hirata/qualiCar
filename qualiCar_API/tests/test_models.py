@@ -17,3 +17,17 @@ class UserProfileTests (TestCase):
 
         self.assertEqual (user.email, email)
         self.assertTrue (user.check_password (password))
+
+    def test_new_user_email_normalized (self):
+        """ Test the e-mail for a new user is normalized """
+        email = 'asdasd@GMAIL.COM'
+        name = 'TestName2'
+
+        user = get_user_model().objects.create_user (
+            email,
+            name,
+            'test123'
+        )
+        print (user.email)
+        print (email.lower())
+        self.assertEqual (user.email, email.lower())
