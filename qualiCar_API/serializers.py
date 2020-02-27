@@ -71,7 +71,7 @@ class PartSerializer (serializers.ModelSerializer):
 class VehicleSerializer (serializers.ModelSerializer):
     """ Serializes Vehicle items """
 
-    parts = PartSerializer(read_only=True, many=True)
+    parts = PartSerializer(read_only=True, many=True, allow_empty=True)
 
     class Meta:
         model = models.Vehicle
