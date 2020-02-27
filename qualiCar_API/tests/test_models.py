@@ -28,6 +28,5 @@ class UserProfileTests (TestCase):
             name,
             'test123'
         )
-        print (user.email)
-        print (email.lower())
+
         self.assertEqual (user.email, email.lower())
