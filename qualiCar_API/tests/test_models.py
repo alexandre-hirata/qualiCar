@@ -35,3 +35,14 @@ class UserProfileTests (TestCase):
         """ Test creating user with no e-mail raises error """
         with self.assertRaises (ValueError):
             get_user_model().objects.create_user (None, 'Valid Name', 'Test123')
+
+    def test_create_new_superuser (self):
+        """ Test creating a new superuser """
+        user = get_user_model().objects.create_superuser (
+            'test@gmail.com',
+            'Name Root',
+            'password123'
+        )
+
+        self.assertTrue (user.is_superuser)
+        self.assertTrue (user.is_staff)
