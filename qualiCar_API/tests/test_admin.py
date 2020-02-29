@@ -22,8 +22,8 @@ class AdminSiteTests (TestCase):
 
     def test_user_listed (self):
         """ Test that users are listed on user page """
-        url = reverse ('admin:qualiCar_API_user_changelist')
+        url = reverse ('admin:qualiCar_API_userprofile_changelist')
         response = self.client.get (url)
 
-        self.assertContains (res, self.user.name)
-        self.assertContains (res, self.user.email)
+        self.assertContains (response, self.user.name)
+        self.assertContains (response, self.user.email)
