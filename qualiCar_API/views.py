@@ -116,6 +116,10 @@ class VehicleViewSet (viewsets.ModelViewSet):
 
     queryset = models.Vehicle.objects.all ()
 
+    def get_queryset (self):
+        """ Return Date for the current authenticated user only """
+        return self.queryset.filter (user=self.request.user).order_by ('-name')
+
     def perform_create (self, serializer):
         """ Sets the user profile to the logget in user """
 
