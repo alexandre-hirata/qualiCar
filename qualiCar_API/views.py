@@ -1,8 +1,9 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import viewsets
+from rest_framework import viewsets, mixins
 from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import filters
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.settings import api_settings
@@ -10,6 +11,25 @@ from rest_framework.settings import api_settings
 from qualiCar_API import serializers
 from qualiCar_API import models
 from qualiCar_API import permissions
+
+
+class BaseQualiCarViewSet (viewsets.GenericViewSet,
+                           mixins.ListModelMixin,
+                           mixins.CreateModelMixin):
+    """ Create base ViewSet to summarize the code """
+
+    # Enable Authentication
+    authentication_classes = (TokenAuthentication, )
+    permission_classes = (IsAuthenticated, )
+
+    def get_queryset (self):
+        """ Return objects for the current authenticated user only """
+        return self.queryset.filter (user=self.request.user).order_by ('-name')
+
+    def perform_create (self, serializer):
+        """ Create new object """
+        serializer.save (user=self.request.user)
+
 
 
 class qualiCarApiView (APIView):
@@ -66,61 +86,22 @@ class UserLoginApiView (ObtainAuthToken):
     renderer_classes = api_settings.DEFAULT_RENDERER_CLASSES
 
 
-class DateViewSet (viewsets.ModelViewSet):
+class DateViewSet (BaseQualiCarViewSet):
     """ Handle creating and update dates """
-
-    # Enable authentication
-    authentication_classes = (TokenAuthentication, )
-
-    serializer_class = serializers.DateSerializer
 
     queryset = models.Date.objects.all ()
-
-    def get_queryset (self):
-        """ Return Date for the current authenticated user only """
-        return self.queryset.filter (user=self.request.user).order_by ('-name')
-
-    def perform_create (self, serializer):
-        """ Sets the user profile to the logget in user """
-
-        serializer.save (author = self.request.user)
+    serializer_class = serializers.DateSerializer
 
 
-class PartViewSet (viewsets.ModelViewSet):
+class PartViewSet (BaseQualiCarViewSet):
     """ Handle creating and update dates """
 
-    # Enable authentication
-    authentication_classes = (TokenAuthentication, )
-
+    queryset = models.Part.objects.all ()
     serializer_class = serializers.PartSerializer
 
-    queryset = models.Part.objects.all ()
 
-    def get_queryset (self):
-        """ Return Date for the current authenticated user only """
-        return self.queryset.filter (user=self.request.user).order_by ('-name')
-
-    def perform_create (self, serializer):
-        """ Sets the user profile to the logget in user """
-
-        serializer.save (author = self.request.user)
-
-
-class VehicleViewSet (viewsets.ModelViewSet):
+class VehicleViewSet (BaseQualiCarViewSet):
     """ Handle creating and update vehicles """
 
-    # Enable authentication
-    authentication_classes = (TokenAuthentication, )
-
-    serializer_class = serializers.VehicleSerializer
-
     queryset = models.Vehicle.objects.all ()
-
-    def get_queryset (self):
-        """ Return Date for the current authenticated user only """
-        return self.queryset.filter (user=self.request.user).order_by ('-name')
-
-    def perform_create (self, serializer):
-        """ Sets the user profile to the logget in user """
-
-        serializer.save (author = self.request.user)
+    serializer_class = serializers.VehicleSerializer
