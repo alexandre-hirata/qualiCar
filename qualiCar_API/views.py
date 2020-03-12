@@ -28,7 +28,7 @@ class BaseQualiCarViewSet (viewsets.GenericViewSet,
 
     def perform_create (self, serializer):
         """ Create new object """
-        serializer.save (user=self.request.user)
+        serializer.save (author=self.request.user)
 
 
 
