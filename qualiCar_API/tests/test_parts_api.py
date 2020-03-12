@@ -37,3 +37,15 @@ class PublicPartsApiTests (TestCase):
         ).exists ()
 
         self.assertTrue (exists)
+
+    def test_create_part_as_anonymous (self):
+        """ Test if it is possible to create a part as anonymous """
+
+        part = models.Part.objects.create (
+
+            name = 'part name',
+            description = 'part description'
+        )
+        response = self.client.get (PARTS_URL)
+
+        self.assertEqual (response.status_code, status.HTTP_400_BAD_REQUEST)
