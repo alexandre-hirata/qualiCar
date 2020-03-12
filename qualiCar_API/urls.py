@@ -5,6 +5,9 @@ from rest_framework.routers import DefaultRouter
 # This import is from qualiCar
 from qualiCar_API import views
 
+
+app_name = 'qualiCar_API'
+
 router = DefaultRouter ()
 # Does not require base-name because there is queryset in Viewset
 # Base-name is required if there is no queryset or overwriting the name of the queryset
