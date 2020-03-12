@@ -23,3 +23,17 @@ class PublicPartsApiTests (TestCase):
         response = self.client.get (PARTS_URL)
 
         self.assertEqual (response.status_code, status.HTTP_200_OK)
+
+    def test_create_part_successful (self):
+        """ Test creating a new part """
+        payload = {
+            'name': 'Test part',
+            'description': 'Test description'
+        }
+        self.client.post (PARTS_URL, payload)
+
+        exists = Part.objects.filter (
+            name = payload ['name']
+        ).exists ()
+
+        self.assertTrue (exists)
