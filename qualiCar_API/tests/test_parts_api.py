@@ -5,6 +5,7 @@ from django.test import TestCase
 from rest_framework import status
 from rest_framework.test import APIClient
 
+from qualiCar_API import models
 from qualiCar_API.models import Part
 
 
