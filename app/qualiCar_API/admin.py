@@ -29,3 +29,4 @@ class UserAdmin (BaseUserAdmin):
 
 admin.site.register (models.UserProfile, UserAdmin)
 admin.site.register (models.Part)
+admin.site.register (models.Vehicle)
