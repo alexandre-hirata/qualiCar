@@ -20,6 +20,8 @@ APP_DIR = os.path.normpath (os.path.join (BASE_DIR, ".."))
 FRONTEND_DIR = os.path.join (APP_DIR, 'frontend')
 FRONTEND_DIR = os.path.join ('/app', FRONTEND_DIR)
 
+LOGIN_REDIRECT_URL = 'index'
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
