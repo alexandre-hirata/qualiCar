@@ -8,8 +8,12 @@ from django.template import loader
 # class Index (APIView):
 #     template = 'index.html'
 
-def Index (request):
-    return render(request, 'index.html')
+class Index(View):
+    template = 'index.html'
+    login_url = '/login/'
+
+    def get(self, request):
+        return render(request, self.template)
 
 
 class Login (View):
