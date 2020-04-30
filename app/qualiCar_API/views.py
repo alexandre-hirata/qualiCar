@@ -22,9 +22,9 @@ class BaseQualiCarViewSet (viewsets.GenericViewSet,
     authentication_classes = (TokenAuthentication, )
     permission_classes = (IsAuthenticatedOrReadOnly, )
 
-    def get_queryset (self):
-        """ Return objects for the current authenticated user only """
-        return models.Date.objects.all ()
+    # def get_queryset (self):
+    #     """ Return objects for the current authenticated user only """
+    #     return self.objects.all ()
 
     def perform_create (self, serializer):
         """ Create new object """
@@ -105,3 +105,10 @@ class VehicleViewSet (BaseQualiCarViewSet):
 
     queryset = models.Vehicle.objects.all ()
     serializer_class = serializers.VehicleSerializer
+
+
+class IncidentViewSet (BaseQualiCarViewSet):
+    """ Handle creating and update incidents """
+
+    queryset = models.Incident.objects.all ()
+    serializer_class = serializers.incidentSerializer

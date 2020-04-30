@@ -151,3 +151,20 @@ class Vehicle (models.Model):
     def get_model (self):
         """ Return model vehicle """
         return self.model
+
+
+class Incident (models.Model):
+    """ Incident model """
+    # Make a reference from settings file to the profile user (author)
+    author = models.ForeignKey (
+        settings.AUTH_USER_MODEL,
+        on_delete = models.SET_NULL,
+        null=True
+    )
+    # ForeignKey that represent the part in the incident
+    part = models.ForeignKey (
+        Part,
+        on_delete=models.CASCADE
+    )
+
+    description = models.CharField (max_length=150)

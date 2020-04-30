@@ -15,6 +15,7 @@ router.register ('profile', views.UserProfileViewSet)
 router.register ('date', views.DateViewSet)
 router.register ('part', views.PartViewSet)
 router.register ('vehicle', views.VehicleViewSet)
+router.register ('incident', views.IncidentViewSet)
 
 urlpatterns = [
     path ('hello-view/', views.qualiCarApiView.as_view()),

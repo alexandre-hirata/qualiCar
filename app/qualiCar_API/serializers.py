@@ -83,3 +83,11 @@ class VehicleSerializer (serializers.ModelSerializer):
             #'author': { 'read-only': True }
             #'create_on': { 'read-only': True }
         }
+
+
+class incidentSerializer (serializers.ModelSerializer):
+    """ Serializes Incident items """
+
+    class Meta:
+        model = models.Incident
+        fields = ('id', 'description', 'part')
