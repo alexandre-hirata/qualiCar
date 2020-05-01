@@ -24,6 +24,13 @@ class Index(View):
         return render(request, self.template)
 
 
+class Incident (View):
+    template = 'forms/incident.html'
+
+    def get(self, request):
+        return render(request, self.template)
+
+
 class Login (View):
     template = 'login.html'
 
