@@ -6,7 +6,43 @@
 
 <div id="layoutSidenav_content">
   <main>
-    New incident
+    <div class="container-fluid">
+      <h1 class="mt-4">New Incident</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Create new incident</li>
+      </ol>
+      <div class="card mt-4">
+        <div class="card border-0 rounded-lg mt-4">
+          <div class="card-body">
+            <form method="post" action="{% url 'login' %}">
+              <div class="form-group">
+                <!-- Description field -->
+                <label class="small mb-1" for="description">Description</label>
+                <input class="form-control py-4" id="incidentDescription" type="incidentDescription" aria-describedby="incidentDescriptionHelp" placeholder="Enter incident description" />
+              </div>
+
+              <div class="form-group">
+                <!-- Author field -->
+                <label class="small mb-1" for="author">Author</label>
+                <input class="form-control py-4" id="incidentAuthor" type="incidentAuthor" aria-describedby="incidentAuthorHelp" placeholder="Author" />
+              </div>
+
+              <div class="form-row">
+                <!-- Date fields -->
+                <!-- Create On field -->
+                <div class="col-md-6">
+                  <div class="form-group"><label class="small mb-1" for="inputCreateOn">Create on</label><input class="form-control py-4" id="incidentCreateOn" type="text" placeholder="Create On" /></div>
+                </div>
+                <div class="col-md-6">
+                  <!-- last Change On field -->
+                  <div class="form-group"><label class="small mb-1" for="inputLastChangeOn">Last change on</label><input class="form-control py-4" id="incidentLastChangeOn" type="text" placeholder="Last change on" /></div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
   </main>
 
 {% endblock %}
