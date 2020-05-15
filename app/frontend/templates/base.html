@@ -46,6 +46,10 @@
                                 Página Inicial</a
                             >
                             {% if user.is_authenticated %}
+                            <a class="nav-link" href="{% url 'incident' %}"
+                                ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                                New incident</a
+                            >
                             <a class="nav-link" href="{% url 'login' %}"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                                 Logout</a
