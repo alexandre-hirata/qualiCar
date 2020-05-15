@@ -168,3 +168,6 @@ class Incident (models.Model):
     )
 
     description = models.CharField (max_length=150)
+
+    def get_parts (self):
+        return self.parts
