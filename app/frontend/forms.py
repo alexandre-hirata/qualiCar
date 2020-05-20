@@ -11,6 +11,13 @@ class PartsForm (forms.Form):
     #     #     attrs = {'class' : 'form-control'}
     #     # )
     # )
+    description = forms.CharField (
+        max_length=150,
+        widget=forms.TextInput(attrs={
+            'class' : 'form-control py-4',
+            'placeholder' : 'Enter incident description',
+        })
+    )
 
     class Meta:
         fields = ('name', 'description', 'author',)
