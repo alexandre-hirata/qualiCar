@@ -1,5 +1,5 @@
 from django import forms
-from qualiCar_API.models import Vehicle, Part, Incident
+from qualiCar_API.models import Vehicle, Part, Incident, UserProfile
 
 
 class PartsForm (forms.Form):
@@ -18,6 +18,11 @@ class PartsForm (forms.Form):
             'placeholder' : 'Enter incident description',
         })
     )
+
+    def __init__(self, *args, **kwargs):
+        self.UserProfile = UserProfile
+
+        super (PartsForm, self).__init__ (*args, **kwargs)
 
     class Meta:
         fields = ('name', 'description', 'author',)
