@@ -1,4 +1,7 @@
 from django import forms
+
+import datetime
+
 from qualiCar_API.models import Vehicle, Part, Incident, UserProfile
 
 
@@ -16,6 +19,14 @@ class PartsForm (forms.Form):
         widget=forms.TextInput(attrs={
             'class' : 'form-control py-4',
             'placeholder' : 'Enter incident description',
+        })
+    )
+
+    create_on = forms.CharField (
+        widget=forms.TextInput(attrs={
+            'class' : 'small mb-1 form-control',
+            'placeholder' : datetime.date.today,
+            'disabled' : 'True',
         })
     )
 
