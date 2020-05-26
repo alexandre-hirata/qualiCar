@@ -30,6 +30,14 @@ class PartsForm (forms.Form):
         })
     )
 
+    last_change_on = forms.CharField (
+        widget=forms.TextInput(attrs={
+            'class' : 'small mb-1 form-control',
+            'placeholder' : datetime.date.today,
+            'disabled' : 'True',
+        })
+    )
+
     def __init__(self, *args, **kwargs):
         self.UserProfile = UserProfile
 
