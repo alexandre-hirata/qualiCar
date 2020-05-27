@@ -50,13 +50,7 @@
               <div class="card-body">
                   <div class="table-responsive">
 
-
-                    <select name=formPart class="mdb-select md-form">
-                        <option value="">None</option>
-                        {% for data in form.part %}
-                          <option value="{{ data.id }}">{{ data.description }}</option>
-                        {% endfor %}
-                    </select>
+                    {{ form.part }}
 
                   </div>
                 </div>

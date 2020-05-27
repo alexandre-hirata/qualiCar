@@ -38,6 +38,14 @@ class PartsForm (forms.Form):
         })
     )
 
+    part = forms.ModelChoiceField (
+        queryset = part,
+        widget=forms.Select(attrs={
+            'class' : 'mdb-select md-form',
+
+        })
+    )
+
     def __init__(self, *args, **kwargs):
         self.UserProfile = UserProfile
 
