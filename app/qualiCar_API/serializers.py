@@ -88,6 +88,13 @@ class VehicleSerializer (serializers.ModelSerializer):
 class incidentSerializer (serializers.ModelSerializer):
     """ Serializes Incident items """
 
+    part = PartSerializer (
+        read_only = True,
+        many = False,
+        default = None
+
+    )
+
     class Meta:
         model = models.Incident
         fields = ('id', 'description', 'part')

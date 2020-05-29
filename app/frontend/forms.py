@@ -40,6 +40,7 @@ class PartsForm (forms.Form):
 
     part = forms.ModelChoiceField (
         queryset = part,
+        required = False,
         widget=forms.Select(attrs={
             'class' : 'mdb-select md-form',
 

@@ -164,6 +164,9 @@ class Incident (models.Model):
     # ForeignKey that represent the part in the incident
     part = models.ForeignKey (
         Part,
+        null = True,
+        blank = True,
+        default = None,
         on_delete=models.CASCADE
     )
 
