@@ -169,5 +169,9 @@ class Incident (models.Model):
 
     description = models.CharField (max_length=150)
 
+    def __str__ (self):
+        """ Return string representation of incident """
+        return self.description
+
     def get_parts (self):
         return self.parts
