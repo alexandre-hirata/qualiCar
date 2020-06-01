@@ -5,7 +5,7 @@ import datetime
 from qualiCar_API.models import Vehicle, Part, Incident, UserProfile
 
 
-class PartsForm (forms.Form):
+class IncidentForm (forms.Form):
     part = Part.objects.all ()
     # part = forms.ChoiceField (
     #     choices = Part.objects.all (),
@@ -50,7 +50,7 @@ class PartsForm (forms.Form):
     def __init__(self, *args, **kwargs):
         self.UserProfile = UserProfile
 
-        super (PartsForm, self).__init__ (*args, **kwargs)
+        super (IncidentForm, self).__init__ (*args, **kwargs)
 
     class Meta:
         fields = ('name', 'description', 'author',)

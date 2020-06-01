@@ -12,7 +12,7 @@ from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
 
 from qualiCar_API.models import UserProfile, Incident, Vehicle, Part
-from frontend.forms import PartsForm
+from frontend.forms import IncidentForm
 
 
 # class Index (APIView):
@@ -29,7 +29,7 @@ class Index(View):
 class Incident (View):
     template = 'forms/incident.html'
     context = {}
-    context['form'] = PartsForm
+    context['form'] = IncidentForm
 
     # incident_part = Incident.objects.get (request.)
     # array2=[]
@@ -48,7 +48,7 @@ class Incident (View):
 
     def get(self, request):
         context = {}
-        context ['form'] = PartsForm
+        context ['form'] = IncidentForm
         return render(request, self.template, context)
 
 
