@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.auth.models import BaseUserManager
 from django.conf import settings
+from django.utils import timezone
 
 
 class UserProfileManager (BaseUserManager):
@@ -155,6 +156,10 @@ class Vehicle (models.Model):
 
 class Incident (models.Model):
     """ Incident model """
+
+    create_on = models.DateTimeField (auto_now_add=True)
+    last_change_on = models.DateTimeField (auto_now_add=True)
+
     # Make a reference from settings file to the profile user (author)
     author = models.ForeignKey (
         settings.AUTH_USER_MODEL,
