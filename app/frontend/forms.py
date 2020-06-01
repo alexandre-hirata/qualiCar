@@ -53,4 +53,4 @@ class IncidentForm (forms.Form):
         super (IncidentForm, self).__init__ (*args, **kwargs)
 
     class Meta:
-        fields = ('name', 'description', 'author',)
+        fields = ('name', 'description', 'author', 'create_on', 'last_change_on', 'part')
