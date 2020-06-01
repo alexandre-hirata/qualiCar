@@ -170,7 +170,6 @@ class Incident (models.Model):
     part = models.ForeignKey (
         Part,
         null = True,
-        blank = True,
         default = None,
         on_delete=models.CASCADE
     )
