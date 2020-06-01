@@ -26,7 +26,7 @@ class Index(View):
         return render(request, self.template)
 
 
-class Incident (View):
+class Incident (APIView):
     template = 'forms/incident.html'
     context = {}
     context['form'] = IncidentForm
