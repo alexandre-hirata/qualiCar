@@ -10,8 +10,11 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
 from django.http import HttpResponseRedirect
+from rest_framework.response import Response
+from rest_framework import status
 
 from qualiCar_API.models import UserProfile, Incident, Vehicle, Part
+from qualiCar_API.serializers import incidentSerializer
 from frontend.forms import IncidentForm
 
 
@@ -50,6 +53,23 @@ class Incident (APIView):
         context = {}
         context ['form'] = IncidentForm
         return render(request, self.template, context)
+
+    def post (self, request):
+
+        form = AuthenticationForm (request.POST)
+
+        serializer = incidentSerializer (
+        # Pass the context resolves the KeyError request
+            context = {'request': request},
+            data = request.data,
+        )
+
+        if serializer.is_valid ():
+            serializer.save ()
+            return Response (serializer.data, status=status.HTTP_201_CREATED)
+        else:
+            print(serializer.errors)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Login (View):
