@@ -114,3 +114,8 @@ class incidentSerializer (serializers.ModelSerializer):
 
         return value
 
+    def validate_author (self, value):
+        """ Custom author validator """
+
+        return value
+
