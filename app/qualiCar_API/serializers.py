@@ -94,6 +94,10 @@ class incidentSerializer (serializers.ModelSerializer):
         allow_empty = True,
     )
 
+    author = serializers.StringRelatedField (
+        default = serializers.CurrentUserDefault(),
+        read_only = True
+    )
 
     permission_classes = (IsAuthenticated,)
 
