@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.permissions import IsAuthenticated
 
 from qualiCar_API import models
 
@@ -94,7 +95,7 @@ class incidentSerializer (serializers.ModelSerializer):
     )
 
 
-    )
+    permission_classes = (IsAuthenticated,)
 
     class Meta:
         model = models.Incident
