@@ -128,3 +128,28 @@ class incidentSerializer (serializers.ModelSerializer):
     #         data.pop ('part')
     #     data._mutable = _mutable
     #     return super(incidentSerializer, self).to_internal_value(data)
+
+    # def perform_update(self, serializer):
+    #     serializer.save (author = self.request.user)
+    #
+    # def perform_create (self, serializer):
+    #     print ("perform_Create")
+    #     #require = serializer.context ['request']
+    #     part_data = self.request.pop
+    #
+    #     serializer.save (author = self.request.user)
+    #
+    # def create (self, validated_data):
+    #     part_data = validated_data.pop ('part')
+    #     print (validated_data)
+    #     for keys,values in validated_data.items():
+    #         print("  **KEY  " + keys)
+    #         print("  **VALUE  " + values)
+    #
+    #     print ("        *****    " + part_data)
+    #     part_instance = models.Part.objects.get (id = part_data)
+    #
+    #     incident = models.Incident.objects.create (**validated_data)
+    #
+    #     incident.part = part_instance
+    #     incident.saVe ()
