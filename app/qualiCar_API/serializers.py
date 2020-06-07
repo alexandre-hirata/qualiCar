@@ -87,11 +87,12 @@ class VehicleSerializer (serializers.ModelSerializer):
 
 class incidentSerializer (serializers.ModelSerializer):
     """ Serializes Incident items """
+    part = serializers.PrimaryKeyRelatedField (
+        queryset=models.Part.objects.all(),
+        allow_null = True,
+        allow_empty = True,
+    )
 
-    part = PartSerializer (
-        read_only = True,
-        many = False,
-        default = None
 
     )
 
