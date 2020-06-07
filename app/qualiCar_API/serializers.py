@@ -119,3 +119,12 @@ class incidentSerializer (serializers.ModelSerializer):
 
         return value
 
+    # def to_internal_value (self, data):
+    #     print ("to_internal_value")
+    #     _mutable = data._mutable
+    #
+    #     data._mutable = True
+    #     if data.get ('part', None) == '':
+    #         data.pop ('part')
+    #     data._mutable = _mutable
+    #     return super(incidentSerializer, self).to_internal_value(data)
