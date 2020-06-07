@@ -108,3 +108,9 @@ class incidentSerializer (serializers.ModelSerializer):
             'id',
         )
 
+    def validate_part (self, value):
+        """ Custom part validator """
+        # TODO implement the part validation (if this part exists, i.e.)
+
+        return value
+
