@@ -9,7 +9,8 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, authenticate
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpRequest
+from rest_framework.request import Request
 from rest_framework.response import Response
 from rest_framework import status
 
@@ -17,6 +18,11 @@ from qualiCar_API.models import UserProfile, Incident, Vehicle, Part
 from qualiCar_API.serializers import incidentSerializer
 from frontend.forms import IncidentForm
 
+
+def preprocess_request(request):
+    if isinstance(request, HttpRequest):
+        return Request(request, parsers=[FormParser])
+    return request
 
 # class Index (APIView):
 #     template = 'index.html'
