@@ -181,5 +181,5 @@ class Incident (models.Model):
         """ Return string representation of incident """
         return self.description
 
-    def get_parts (self):
-        return self.parts
+    def get_part (self):
+        return self.part
