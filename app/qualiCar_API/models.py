@@ -169,9 +169,10 @@ class Incident (models.Model):
     # ForeignKey that represent the part in the incident
     part = models.ForeignKey (
         Part,
-        null = True,
+        blank = True,
         default = None,
-        on_delete=models.CASCADE
+        null = True,
+        on_delete=models.SET_DEFAULT
     )
 
     description = models.CharField (max_length=150)
