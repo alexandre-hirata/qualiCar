@@ -99,4 +99,8 @@ class incidentSerializer (serializers.ModelSerializer):
 
     class Meta:
         model = models.Incident
-        fields = ('id', 'description', 'part')
+        fields = '__all__'
+        read_only_fields=(
+            'id',
+        )
+
