@@ -1,8 +1,13 @@
 from rest_framework import serializers
 from rest_framework.permissions import IsAuthenticated
 
+import logging
+
 from qualiCar_API import models
 
+
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 class qualiCarSerializer (serializers.Serializer):
     """ Serializes a name field for testing our APIView """
