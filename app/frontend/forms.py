@@ -24,7 +24,7 @@ class IncidentForm (forms.Form):
 
     create_on = forms.CharField (
         widget=forms.TextInput(attrs={
-            'class' : 'small mb-1 form-control',
+            'class' : 'smb-1 form-control',
             'value' : datetime.date.today,
             'disabled' : 'True',
         })
