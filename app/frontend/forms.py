@@ -38,6 +38,13 @@ class IncidentForm (forms.Form):
         })
     )
 
+    author = forms.CharField (
+        widget=forms.TextInput(attrs={
+            'class' : 'form-control py-4',
+            'disabled' : 'True',
+        })
+    )
+
     part = forms.ModelChoiceField (
         queryset = part,
         required = False,
