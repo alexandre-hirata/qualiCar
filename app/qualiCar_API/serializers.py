@@ -99,9 +99,11 @@ class incidentSerializer (serializers.ModelSerializer):
         allow_empty = True,
     )
 
-    author = serializers.StringRelatedField (
-        default = serializers.CurrentUserDefault(),
-        read_only = True
+    author = serializers.PrimaryKeyRelatedField (
+        queryset=models.UserProfile.objects.all(),
+        required=False,
+        allow_null=True,
+        default=None
     )
 
     permission_classes = (IsAuthenticated,)
@@ -115,14 +117,19 @@ class incidentSerializer (serializers.ModelSerializer):
 
     def validate_part (self, value):
         """ Custom part validator """
+        logger.info ("Incident serializer -> validate_part method")
+        logger.info ("    Value = %s", value)
+
         # TODO implement the part validation (if this part exists, i.e.)
 
         return value
 
     def validate_author (self, value):
         """ Custom author validator """
+        logger.info ("Incident serializer -> validate_author method")
+        logger.info ("    Value = %s", value)
 
-        return value
+        return self.context['request'].user
 
     # def to_internal_value (self, data):
     #     print ("to_internal_value")
