@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'widget_tweaks',
     'import_export',
+    'reports',
     'qualiCar_API',
     'frontend',
 ]
