@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'widget_tweaks',
+    'import_export',
     'qualiCar_API',
     'frontend',
 ]
@@ -167,3 +168,6 @@ STATIC_URL = '/static/'
 
 # Set Django user model (overwrite the default one)
 AUTH_USER_MODEL = 'qualiCar_API.UserProfile'
+
+# Configure import_export and report installed apps
+IMPORT_EXPORT_USE_TRANSACTIONS = True
