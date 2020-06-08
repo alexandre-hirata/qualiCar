@@ -18,6 +18,10 @@ from qualiCar_API.models import UserProfile, Incident, Vehicle, Part
 from qualiCar_API.serializers import incidentSerializer
 from frontend.forms import IncidentForm
 
+import logging
+
+
+logger = logging.getLogger (__name__)
 
 def preprocess_request(request):
     if isinstance(request, HttpRequest):
@@ -36,6 +40,7 @@ class Index(View):
 
 
 class Incident (APIView):
+    logger.info ("Incident view")
     template = 'forms/incident.html'
     context = {}
     context['form'] = IncidentForm
@@ -56,11 +61,13 @@ class Incident (APIView):
 
 
     def get(self, request):
+        logger.info ("Incident view get method")
         context = {}
         context ['form'] = IncidentForm
         return render(request, self.template, context)
 
     def post (self, request):
+        logger.info ("Incident view post method")
 
         form = AuthenticationForm (request.POST)
 
