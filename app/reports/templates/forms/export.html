@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="layoutSidenav_content">
+  <main>
+    <div class="container-fluid">
+      <h1 class="mt-4">Export Data</h1>
+      <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Exporting from database</li>
+      </ol>
+      <div class="card mt-4">
+        <div class="card border-0 rounded-lg mt-4">
+          <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <p>Please select format of file.</p>
+              <select name="file-format" class="form-control my-3">
+                <option selected>Choose format...</option>
+                <option>CSV</option>
+                <option>JSON</option>
+                <option>XLS</option>
+              </select>
+              <button class="btn btn-primary" type="submit">Export</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+{% endblock %}

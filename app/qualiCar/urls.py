@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path ('api/', include ('qualiCar_API.urls')),
-    path ('', include ('frontend.urls'))
+    path ('', include ('frontend.urls')),
+    path ('reports/', include ('reports.urls'))
 ]
