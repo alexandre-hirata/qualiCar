@@ -3,6 +3,9 @@ from django.http import HttpResponse
 
 from tablib import Dataset
 
+from json2xml import json2xml
+from json2xml.utils import readfromstring
+
 from reports.resources import PartResource
 
 from qualiCar_API.models import Part
@@ -26,6 +29,15 @@ def export_data (request):
             response = HttpResponse (dataset.xls, content_type='application/vnd.ms-excel')
             response['Content-Disposition'] = 'attachment; filename="part_exported_data.xls"'
             return response
+        elif file_format == 'XML':
+            # This step is using json2xml library
+            # To do so, the code converts to JSON to convert (again) to XML
+            xml_output = json2xml.Json2xml (readfromstring (dataset.json)).to_xml()
+
+            response = HttpResponse (xml_output, content_type='application/xml')
+            response['Content-Disposition'] = 'attachment; filename="part_exported_data.xml"'
+            return response
+
 
     return render (request, 'forms/export.html')
 
